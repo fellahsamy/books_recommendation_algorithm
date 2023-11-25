@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Books</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="row">
+  <div class="col-sm-9">
+
+   <h1>BOOKS WEB SITE</h1>
+    <div class="row">
+      <div class="col-8 col-sm-6">
+                <h2>List of Books</h2>
+            <table class="table table-striped">
+                {% for book in books %}
+                    <tr>
+                        <td> <a href="/book/{{ book.isbn }}">{{ book.title }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="pagination">
+                {% if books.has_prev %}
+                    <a href="?page={{ books.prev_num }}">Previous</a>
+                {% endif %}
+                Page {{ books.page }} of {{ books.pages }}
+                {% if books.has_next %}
+                    <a href="?page={{ books.next_num }}">Next</a>
+                {% endif %}
+            </div>
+      </div>
+      <div class="col-4 col-sm-6">
+          <h2>{{ book.title }}</h2>
+          <table class="table">
+              <tr>
+          <table class="table">
+              <tr>
+                  <td><img src={{ book.image_l }}></td>
+                  <td>
+                      <table>
+                          <tr>
+                              <th scope="row">Title:</th>
+                              <td>{{ book.title }}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Author:</th>
+                              <td>{{ book.author }}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Year:</th>
+                              <td>{{ book.year }}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Publisher:</th>
+                              <td>{{ book.publisher }}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">ISBN:</th>
+                              <td>{{ book.isbn }}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Mean Rating:</th>
+                              <td>{{ mean_rating_stars }}, {{ book.mean_rating }}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Rating Count:</th>
+                              <td>{{ book.count_rating }}</td>
+                          </tr>
+                  </td>
+
+              </tr>
+          </table>
+                  </tr>
+              <tr>
+
+
+          <table class="table table-bordered">
+              <tr><h3>Recommendation :</h3></tr>
+               <tr>
+                {% for recommended_book in recommended_books %}
+                    <td>
+                        <div>
+                            <img src={{recommended_book.image_m}}>
+                            <a href="/book/{{ recommended_book.isbn }}">{{ recommended_book.title }}</a>
+                        </div>
+                    </td>
+                {% endfor %}
+              </tr>
+          </table>
+              </tr>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

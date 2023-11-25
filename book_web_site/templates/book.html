@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+    <script src="/static/js/main.js"></script>
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>Year: {{ book.year }}</p>
+    <p>Publisher: {{ book.publisher }}</p>
+    <p>Medium Image: {{ book.image_m }}</p>
+    <p>Large Image: {{ book.image_l }}</p>
+    <img src={{ book.image_m }}>
+    <p>Mean Rating: {{ book.mean_rating }}</p>
+    <p>Rating Count: {{ book.count_rating }}</p>
+    <a href="/">Back to Book List</a>
+</body>
+</html>
